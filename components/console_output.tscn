@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://components/console_output.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.0862745, 0.105882, 0.133333, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 40.0
+content_margin_right = 40.0
+content_margin_top = 40.0
+content_margin_bottom = 40.0
+draw_center = false
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+info_label_path = NodePath("InfoLabel")
+output_buffer_path = NodePath("OutputBuffer")
+
+[node name="OutputBuffer" type="TextEdit" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/line_spacing = 10
+custom_styles/read_only = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+readonly = true
+draw_tabs = true
+draw_spaces = true
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+smooth_scrolling = true
+wrap_enabled = true
+
+[node name="InfoLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 0.7 )
+custom_styles/normal = SubResource( 1 )
+text = "If your script outputs data to the console, it will appear here."
+align = 1
+autowrap = true

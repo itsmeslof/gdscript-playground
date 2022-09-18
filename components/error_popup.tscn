@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://components/error_popup.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0509804, 0.0666667, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.839216, 0.219608, 0.278431, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0862745, 0.105882, 0.133333, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.145098, 0.176471, 0.219608, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.415686, 0.615686, 0.917647, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=5]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.415686, 0.615686, 0.917647, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color( 0.121569, 0.14902, 0.188235, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ErrorPopup" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 2
+color = Color( 0, 0, 0, 0.4 )
+script = ExtResource( 1 )
+title_label_path = NodePath("CenterContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/TitleLabel")
+message_label_path = NodePath("CenterContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Label")
+ok_btn_path = NodePath("CenterContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Button")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+margin_left = 312.0
+margin_top = 200.0
+margin_right = 712.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 400, 200 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 398.0
+margin_bottom = 198.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+margin_right = 396.0
+margin_bottom = 34.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer/PanelContainer"]
+margin_right = 396.0
+margin_bottom = 34.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 386.0
+margin_bottom = 24.0
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 376.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Error running script"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 396.0
+margin_bottom = 196.0
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 386.0
+margin_bottom = 138.0
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 376.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/line_spacing = 10
+text = "There was an error running the script. Please check for syntax errors and run again."
+align = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_left = 158.0
+margin_top = 92.0
+margin_right = 217.0
+margin_bottom = 118.0
+size_flags_horizontal = 4
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "OK"

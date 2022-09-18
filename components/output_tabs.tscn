@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://components/output_tabs.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 15.0
+draw_center = false
+border_width_bottom = 1
+border_color = Color( 0.121569, 0.14902, 0.188235, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_bottom = 15.0
+draw_center = false
+border_width_bottom = 3
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_bottom = 15.0
+draw_center = false
+border_width_bottom = 3
+border_color = Color( 0.415686, 0.615686, 0.917647, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[node name="OutputTabs" type="PanelContainer"]
+anchor_right = 1.0
+custom_styles/panel = SubResource( 8 )
+script = ExtResource( 1 )
+gui_output_tab_path = NodePath("HBoxContainer/GUIOutputBtn")
+console_tab_path = NodePath("HBoxContainer/ConsoleBtn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 44.0
+custom_constants/separation = 20
+
+[node name="GUIOutputBtn" type="Button" parent="HBoxContainer"]
+margin_right = 74.0
+margin_bottom = 29.0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 0.701961 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "GUI Output"
+
+[node name="ConsoleBtn" type="Button" parent="HBoxContainer"]
+margin_left = 94.0
+margin_right = 145.0
+margin_bottom = 29.0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 0.7 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = SubResource( 11 )
+custom_styles/normal = SubResource( 9 )
+text = "Console"

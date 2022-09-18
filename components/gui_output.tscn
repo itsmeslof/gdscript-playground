@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://components/gui_output.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 40.0
+content_margin_right = 40.0
+content_margin_top = 40.0
+content_margin_bottom = 40.0
+draw_center = false
+
+[node name="GUIOutput" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+script = ExtResource( 1 )
+info_label_path = NodePath("InfoLabel")
+output_wrapper_path = NodePath("OutputWrapper")
+
+[node name="OutputWrapper" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="InfoLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 0.701961 )
+custom_constants/line_spacing = 10
+custom_styles/normal = SubResource( 1 )
+text = "If your script extends a Control node, it will appear here.
+
+Your node will be placed in a Control node, with no assumptions made. If your node does not have a computed size, you may need to explicitly set your node's rect_size or anchors to see any visible output."
+align = 1
+autowrap = true
