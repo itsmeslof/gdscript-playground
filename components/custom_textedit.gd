@@ -1,30 +1,6 @@
 extends TextEdit
 
 
-#const CONTROL_FLOW = [
-#	"if",
-#	"else",
-#	"elif",
-#	"match",
-#	"continue",
-#	"break",
-#	"for",
-#	"while",
-#	"return",
-#	"pass"
-#]
-#
-#const BASE = [
-#	"null",
-#	"String",
-#	"Vector"
-#]
-#
-#const KEYWORDS = [
-#	""
-#]
-
-
 const CONTROL_FLOW := [
 	'if',
 	'else',
