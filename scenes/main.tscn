@@ -1,8 +1,106 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
+[ext_resource path="res://assets/HSplitGrabber.svg" type="Texture" id=2]
+[ext_resource path="res://components/custom_textedit.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/FiraCode-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://components/output_container.tscn" type="PackedScene" id=5]
+[ext_resource path="res://components/topbar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/error_popup.tscn" type="PackedScene" id=7]
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0509804, 0.0666667, 0.0901961, 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 14
+font_data = ExtResource( 4 )
+
+[node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+text_edit_path = NodePath("VBoxContainer/PanelContainer/HSplitContainer/TextEdit")
+topbar_path = NodePath("VBoxContainer/TopBar")
+error_popup_path = NodePath("ErrorPopup")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+
+[node name="TopBar" parent="VBoxContainer" instance=ExtResource( 6 )]
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 6 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 554.0
+custom_icons/grabber = ExtResource( 2 )
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/PanelContainer/HSplitContainer"]
+margin_right = 506.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+custom_colors/member_variable_color = Color( 0.701961, 0.572549, 0.941176, 1 )
+custom_colors/function_color = Color( 0.47451, 0.721569, 1, 1 )
+custom_colors/safe_line_number_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.882353, 0.894118, 0.909804, 1 )
+custom_colors/line_number_color = Color( 0.376471, 0.4, 0.419608, 1 )
+custom_colors/background_color = Color( 0.0509804, 0.0666667, 0.0901961, 1 )
+custom_colors/number_color = Color( 0.47451, 0.721569, 1, 1 )
+custom_colors/current_line_color = Color( 0.121569, 0.14902, 0.188235, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "extends Button
+
+
+var _counter: int = 0
+
+
+func _ready() -> void:
+	connect(\"pressed\", self, \"_increment\")
+	render()
+
+
+func _increment() -> void:
+	self._counter += 1
+	render()
+
+
+func render() -> void:
+	text = \"I've been clicked {counter} {pluralized}\".format({
+		\"counter\": self._counter,
+		\"pluralized\": _pluralize(\"time\", self._counter)
+	})
+
+
+func _pluralize(input: String, count: int) -> String:
+	if count == 1:
+		return input
+	
+	return \"{input}s\".format({\"input\": input})
+"
+highlight_current_line = true
+syntax_highlighting = true
+show_line_numbers = true
+fold_gutter = true
+highlight_all_occurrences = true
+smooth_scrolling = true
+hiding_enabled = true
+wrap_enabled = true
+caret_blink = true
+script = ExtResource( 3 )
+
+[node name="OutputContainer" parent="VBoxContainer/PanelContainer/HSplitContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 554.0
+
+[node name="ErrorPopup" parent="." instance=ExtResource( 7 )]
+visible = false
